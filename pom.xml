@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba</artifactId>
+        <version>2.2.1.BUILD-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.steam.cloud</groupId>
+    <artifactId>steam-cloud</artifactId>
+    <packaging>pom</packaging>
+    <name>Steam Cloud</name>
+    <description>Example showing how to use features of Spring Cloud Alibaba</description>
+
+    <modules>
+        <module>sentinel/sentinel-core</module>
+        <module>sentinel/sentinel-dubbo/sentinel-dubbo-provider</module>
+        <module>sentinel/sentinel-dubbo/sentinel-dubbo-consumer</module>
+        <module>sentinel/sentinel-dubbo/sentinel-dubbo-api</module>
+        <module>sentinel/sentinel-feign/sentinel-feign-consumer</module>
+        <module>sentinel/sentinel-feign/sentinel-feign-provider</module>
+        <module>sentinel/sentinel-webflux</module>
+        <module>sentinel/sentinel-spring-cloud-gateway</module>
+        <module>sentinel/sentinel-zuul</module>
+        <module>nacos/nacos-discovery</module>
+        <module>nacos/nacos-config</module>
+        <module>nacos/nacos-gateway</module>
+        <module>seata/business-service</module>
+        <module>seata/order-service</module>
+        <module>seata/storage-service</module>
+        <module>seata/account-service</module>
+        <module>rocketmq/rocketmq-consumer</module>
+        <module>rocketmq/rocketmq-producer</module>
+        <module>spring-cloud-bus-rocketmq</module>
+        <module>spring-cloud-alibaba-dubbo</module>
+        <module>spring-cloud-alibaba-sidecar/spring-cloud-alibaba-sidecar-nacos</module>
+        <module>spring-cloud-alibaba-sidecar/spring-cloud-alibaba-sidecar-consul</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>checkstyle-validation</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Checkstyle rules inherited from spring-cloud-build -->
+                            <suppressionsLocation>eclipse/checkstyle-suppressions.xml</suppressionsLocation>
+                            <includeTestSourceDirectory>false</includeTestSourceDirectory>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>false</failsOnError>
+                            <failOnViolation>false</failOnViolation>
+                            <violationSeverity>warning</violationSeverity>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <additionalparam>${javadoc.opts}</additionalparam>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

@@ -1,0 +1,3 @@
+server:
+  port: 28080
+config: config-from-yml
